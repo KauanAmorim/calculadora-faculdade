@@ -1,8 +1,16 @@
+from jsonschema import ValidationError
+import math
+
 class Calculadora:
 
-    def __init__(self, number1, number2) -> None:
-        self.__number1 = number1
-        self.__number2 = number2
+    def setNumber1(self, number) -> None:
+        self.__number1 = number
+    
+    def setNumber2(self, number) -> None:
+        self.__number2 = number
+
+    def setOperation(self, operation) -> None:
+        self.__operation = operation
 
     @property
     def number1(self):
@@ -12,34 +20,41 @@ class Calculadora:
     def number2(self):
         return self.__number2
     
-    def calcular(self, operation):
-        if operation == "somar":
-            return self.somar()
-        if operation == "subtrair":
-            return self.subtrair()
-        if operation == "multiplicar":
-            return self.multiplicar()
-        if operation == "dividir":
-            return self.dividir()
-        if operation == "resto":
-            return self.resto()
+    @property
+    def operation(self):
+        return self.__operation
 
-    def somar(self):
-        result = self.__number1 + self.__number2
+    def calcular(self):
+        self.__validParameters(self.__operation)
+
+        if self.__operation == "sqrt":
+            return self.squareRoot()
+        if self.__operation == "pow":
+            return self.exponential()
+        if self.__operation == "log":
+            return self.logarithm()
+        
+        raise Exception("This operation does not exist")
+
+    def squareRoot(self):
+        self.__validParameters(self.__number1)
+        result = math.sqrt(self.__number1)
         return result
     
-    def subtrair(self):
-        result = self.__number1 - self.__number2
+    def exponential(self):
+        self.__validParameters(self.__number1, self.__number2)
+        result = math.pow(self.__number1, self.__number2)
         return result
 
-    def multiplicar(self):
-        result = self.__number1 * self.__number2
+    def logarithm(self):
+        self.__validParameters(self.__number1)
+        result = math.log(self.__number1)
         return result
-
-    def dividir(self):
-        result = self.__number1 / self.__number2
-        return result
-
-    def resto(self):
-        result = self.__number1 % self.__number2
-        return result
+    
+    def __validParameters(self, parameter1, parameter2 = False) -> None:
+        if parameter1 and parameter2:
+            if not (parameter1 and parameter2):
+                raise ValidationError("Missing parameter to continue the operation")
+        else:
+            if not parameter1:
+                raise ValidationError("Missing parameter to continue the operation")

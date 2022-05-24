@@ -9,14 +9,12 @@
     <body>
         <h1>Calculadora</h1>
         <form action="/calcular" method="post">
-            <input type="number" name="number1">
-            <input type="number" name="number2">
-            <select name="operation" id="operation">
-                <option value="somar">somar</option>
-                <option value="subtrair">subtrair</option>
-                <option value="multiplicar">multiplicar</option>
-                <option value="dividir">dividir</option>
-                <option value="resto">resto</option>
+            <input value=0 placeholder="number1" type="number" name="number1" required>
+            <input value=0 placeholder="number2" type="number" name="number2">
+            <select name="operation" id="operation" required>
+                <option value="sqrt">Raiz Quadrada</option>
+                <option value="pow">Exponencial</option>
+                <option value="log">Logaritmo</option>
             </select>
             <button type="submit">Calcular</button>
         </form>

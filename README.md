@@ -1,8 +1,5 @@
-# AC01
+# AC05
 
-Esse é o resultado da AC01 
-
-Frameworks Full-stack
-
-Pacotes para instalar
-- pip install flask
+Desenvolver uma calculadora web em python flask com testes unitários, para as operacoes de raiz quadrada, exponenciacao e logaritmo.
+A entrega deve ser preferencialmente no github.
+Os testes unitario devem ser feitos preferencialmente com unittest
